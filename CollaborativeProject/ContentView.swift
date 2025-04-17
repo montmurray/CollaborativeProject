@@ -9,13 +9,38 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("The Answer Is...")
+        NavigationView {
+            VStack {
+                NavigationLink(destination: APIView()) {
+                    Text("Trivia List")
+                        .font(.title)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                
+                NavigationLink(destination: APIView()) {
+                    Text("Settings")
+                        .font(.title)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                
+                NavigationLink(destination: APIView()) {
+                    Text("Test")
+                        .font(.title)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                
+                .navigationTitle("The Answer IS...")
+            }
         }
-        .padding()
     }
 }
 
