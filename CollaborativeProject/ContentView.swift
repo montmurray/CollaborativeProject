@@ -2,16 +2,27 @@
 //  ContentView.swift
 //  CollaborativeProject
 //
-//  Created by Tessa Murray on 4/14/25.
+//  Created by Devan Myers on 4/14/25.
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    
+    let categories = [
+        "General Knowledge",
+        "Arts and Literature",
+        "History",
+        "Science",
+        "Music",
+        "Society and Culture",
+        "Geography"
+    ]
+    
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: APIView()) {
+                NavigationLink(destination: CategoryView()) {
                     Text("Trivia List")
                         .font(.title)
                         .padding()
@@ -20,7 +31,7 @@ struct ContentView: View {
                         .cornerRadius(10)
                 }
                 
-                NavigationLink(destination: APIView()) {
+                NavigationLink(destination: APIView(selectedCategory: "General Knowledge")) {
                     Text("Settings")
                         .font(.title)
                         .padding()
@@ -29,7 +40,7 @@ struct ContentView: View {
                         .cornerRadius(10)
                 }
                 
-                NavigationLink(destination: APIView()) {
+                NavigationLink(destination: APIView(selectedCategory: categories.randomElement() ?? "General Knowledge")) {
                     Text("Test")
                         .font(.title)
                         .padding()
@@ -47,3 +58,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
