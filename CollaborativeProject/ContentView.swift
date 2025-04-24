@@ -41,9 +41,9 @@ struct ContentView: View {
                  LinearGradient(gradient: Gradient(colors: [AppColors.primary, AppColors.accent]), startPoint: .top, endPoint: .bottom)
                      .ignoresSafeArea()
                  
-                 //Image (systemName: "question.mark")
-                 //    .font(.system(size: 270))
-                 //    .foregroundStyle(Color.white.opacity (0.4))
+                 Image (systemName: "questionmark")
+                     .font(.system(size: 650))
+                     .foregroundStyle(Color.white.opacity (0.4))
                  VStack(spacing: 20) {
                      
                      Text("The Answer Is!")
@@ -57,7 +57,7 @@ struct ContentView: View {
                          .shadow(radius: 1)
                      
                      NavigationLink(destination: CategoryView()) {
-                         Text("Trivia List")
+                         Text("Pick your Trivia!")
                              .font(.title)
                              .padding()
                              .foregroundColor(AppColors.textPrimary)
@@ -92,20 +92,9 @@ struct ContentView: View {
                              .scaleEffect(1.05)
                              .animation(.easeOut, value: 1)
                      }
-                     
-                     Text("About").onTapGesture {
-                         
-                     }
-                     .foregroundColor(AppColors.textPrimary)
-                     
-                     Text("About").onTapGesture {
-                         
-                     }
-                     .foregroundColor(AppColors.textPrimary)
                  }
                  .padding()
              }
-             .navigationBarTitleDisplayMode(.inline)
          }
 
      }

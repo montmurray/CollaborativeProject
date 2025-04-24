@@ -29,43 +29,69 @@ struct CategoryView: View {
     ]
     
     var body: some View {
+        
         NavigationView {
-            VStack {
-                Text("Select a Category")
-                    .font(.title)
-                    .padding()
-
-                // Display a list of categories
-                List(categories, id: \.self) { category in
-                    Button(action: {
-                        // When a category is selected, update the selectedCategory
-                        selectedCategory = category
-                    }) {
-                        HStack {
-                            Text(category)
-                                .font(.title2)
-                            Spacer()
-                            if selectedCategory == category {
-                                Image(systemName: "checkmark")
-                                    .foregroundColor(.blue)
-                            }
-                        }
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [AppColors.primary, AppColors.accent]), startPoint: .top, endPoint: .bottom)
+                    .ignoresSafeArea()
+                
+                
+                Image (systemName: "questionmark")
+                    .font(.system(size: 550))
+                    .foregroundStyle(Color.white.opacity (0.4))
+                
+                VStack(spacing: 20) {
+                    
+                    Text("Select A Category")
+                        //.font(.largeTitle)
+                        .font(.system(size: 30))
+                        .multilineTextAlignment(.center)
+                        .fontWeight(.bold)
+                        .foregroundColor(AppColors.textPrimary)
                         .padding()
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(10)
+                        .cornerRadius(15)
+                        .shadow(radius: 1)
+                    
+
+                    List(categories, id: \.self) { category in
+                        Button(action: {
+                            // When a category is selected, update the selectedCategory
+                            selectedCategory = category
+                        }) {
+                            HStack {
+                                Text(category)
+                                    .font(.title2)
+                                    //.background(AppColors.primary)
+                                Spacer()
+                                if selectedCategory == category {
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                            .padding()
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(100)
+                        }
+                    }
+                    .background(AppColors.primary)
+                    .foregroundColor(AppColors.accent)
+                    Spacer()
+                    
+                        NavigationLink(destination: APIView(selectedCategory: selectedCategory)) {
+                            Text("Start Trivia")
+                                .font(.title)
+                                .padding()
+                                .foregroundColor(AppColors.textPrimary)
+                                .background(LinearGradient(gradient: Gradient(colors: [AppColors.accent, AppColors.background]), startPoint: .top, endPoint: .bottom))
+                                .cornerRadius(12)
+                                .shadow(radius: 10)
+                                .scaleEffect(1.05)
+                                .animation(.easeOut, value: 1)
                     }
                 }
-                NavigationLink(destination: APIView(selectedCategory: selectedCategory)) {
-                    Text("Start Trivia")
-                        .font(.title)
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .padding(.top)
-                }
+                .padding()
             }
-            .navigationTitle("Category Selection")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

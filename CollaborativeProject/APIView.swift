@@ -5,22 +5,35 @@
 //  Created by Tessa Murray on 4/21/25.
 //
 
-
 import SwiftUI
+
 
 struct APIView: View {
     @State private var questions = [TriviaQuestion]()
     var selectedCategory: String
     @State private var currentQuestionIndex = 0
     @State private var selectedAnswer: String?
+    @State private var answer = ""
     @State private var showAnswer = false
 
     var body: some View {
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [AppColors.primary, AppColors.accent]), startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
+            
+            
+            Image (systemName: "questionmark")
+                .font(.system(size: 550))
+                .foregroundStyle(Color.white.opacity (0.4))
         VStack {
-            // Category Selection (for demo, you can replace with your actual categories)
-                        Text("Category: \(selectedCategory)")
-                            .font(.title)
+                        Text("\(selectedCategory)")
+                            .font(.system(size: 40))
+                            .multilineTextAlignment(.center)
+                            .fontWeight(.bold)
+                            .foregroundColor(AppColors.textPrimary)
                             .padding()
+                            .cornerRadius(15)
+                            .shadow(radius: 1)
 
                         // Show the question if available
                         if !questions.isEmpty {
@@ -28,8 +41,14 @@ struct APIView: View {
 
                             // Display the current question
                             Text(question.question.text)
-                                .font(.headline)
+                                .font(.system(size: 30))
+                                .multilineTextAlignment(.center)
+                                .fontWeight(.bold)
+                                .foregroundColor(AppColors.textPrimary)
                                 .padding()
+                                .cornerRadius(15)
+                                .shadow(radius: 1)
+                                                        
                 // Shuffle answers (correct + 3 incorrect)
                 let allAnswers = (question.incorrectAnswers + [question.correctAnswer]).shuffled()
 
@@ -39,34 +58,42 @@ struct APIView: View {
                         showAnswer = true
                     }) {
                         Text(answer)
+                            .font(.system(size: 20))
                             .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                            .padding(5)
+                            .foregroundColor(AppColors.textPrimary)
+                            .background(LinearGradient(gradient: Gradient(colors: [AppColors.accent, AppColors.background]), startPoint: .top, endPoint: .bottom))
+                            .cornerRadius(12)
+                            .shadow(radius: 10)
+                            .scaleEffect(1.05)
+                            .animation(.easeOut, value: 1)
+                            .padding()
                     }
                 }
 
                 // Show answer feedback
                 if showAnswer {
                     Text(selectedAnswer == question.correctAnswer ? "Correct!" : "Incorrect!")
-                        .font(.subheadline)
-                        .foregroundColor(selectedAnswer == question.correctAnswer ? .green : .red)
-                        .padding()
+                        .foregroundColor(selectedAnswer == question.correctAnswer ? .green : .white)
+                        .font(.system(size: 50))
+                        .shadow(radius: 20)
 
-                    Button("Next") {
-                        selectedAnswer = nil
-                        showAnswer = false
-                        if currentQuestionIndex < questions.count - 1 {
-                            currentQuestionIndex += 1
-                        } else {
-                            currentQuestionIndex = 0 // Reset or handle quiz completion
+                        .padding()
+                    if (selectedAnswer == question.correctAnswer)
+                    {
+                        Button("Next") {
+                            selectedAnswer = nil
+                            showAnswer = false
+                            if currentQuestionIndex < questions.count - 1 {
+                                currentQuestionIndex += 1
+                            } else {
+                                currentQuestionIndex = 0 // Reset or handle quiz completion
+                            }
                         }
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                     }
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
                 }
             } else {
                 Text("Loading questions...")
@@ -79,6 +106,7 @@ struct APIView: View {
             Task {
                 questions = await loadQuestions(for: selectedCategory)
             }
+        }
         }
     }
 
