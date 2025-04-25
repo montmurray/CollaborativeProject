@@ -70,11 +70,11 @@ struct CategoryView: View {
                             }
                             .padding()
                             .background(Color.gray.opacity(0.1))
-                            .cornerRadius(100)
+                            .cornerRadius(10)
                         }
                     }
                     .background(AppColors.primary)
-                    .foregroundColor(AppColors.accent)
+                    //.foregroundColor(AppColors.)
                     Spacer()
                     
                         NavigationLink(destination: APIView(selectedCategory: selectedCategory)) {
