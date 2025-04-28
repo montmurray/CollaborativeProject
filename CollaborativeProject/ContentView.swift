@@ -69,17 +69,6 @@ struct ContentView: View {
                              .animation(.easeOut, value: 1)
                      }
                      
-                     NavigationLink(destination: APIView(selectedCategory: "General Knowledge")) {
-                         Text("Settings")
-                             .font(.title)
-                             .padding()
-                             .foregroundColor(AppColors.textPrimary)
-                             .background(LinearGradient(gradient: Gradient(colors: [AppColors.accent, AppColors.background]), startPoint: .top, endPoint: .bottom))
-                             .cornerRadius(12)
-                             .shadow(radius: 10)
-                             .scaleEffect(1.05)
-                             .animation(.easeOut, value: 1)
-                     }
                      Text("About").onTapGesture {
                          showingAbout = true
                      }

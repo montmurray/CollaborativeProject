@@ -41,7 +41,7 @@ struct APIView: View {
 
                             // Display the current question
                             Text(question.question.text)
-                                .font(.system(size: 30))
+                                .font(.system(size: 20))
                                 .multilineTextAlignment(.center)
                                 .fontWeight(.bold)
                                 .foregroundColor(AppColors.textPrimary)
