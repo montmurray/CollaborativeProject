@@ -15,9 +15,11 @@
 
 import SwiftUI
 
+//initial struct
 struct CategoryView: View {
     @State private var selectedCategory = "General Knowledge" // Default category
     
+    //category list
     let categories = [
         "General Knowledge",
         "Arts and Literature",
@@ -29,7 +31,8 @@ struct CategoryView: View {
     ]
     
     var body: some View {
-        
+        //interface
+        //navigation views access the API
         NavigationView {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [AppColors.primary, AppColors.accent]), startPoint: .top, endPoint: .bottom)
@@ -74,9 +77,9 @@ struct CategoryView: View {
                         }
                     }
                     .background(AppColors.primary)
-                    //.foregroundColor(AppColors.)
-                    Spacer()
                     
+                    Spacer()
+                
                         NavigationLink(destination: APIView(selectedCategory: selectedCategory)) {
                             Text("Start Trivia")
                                 .font(.title)

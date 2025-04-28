@@ -5,14 +5,21 @@
 //  Created by Tessa Murray on 4/21/25.
 //
 
+//lamp oil, rope, bombs? its yours, my friend.
+
 import SwiftUI
 
+//initial struct
 struct APIView: View {
+    //questions
     @State private var questions = [TriviaQuestion]()
     var selectedCategory: String
+    //numbering questions
     @State private var currentQuestionIndex = 0
+    //answers
     @State private var selectedAnswer: String?
     @State private var answer = ""
+    //correct answer
     @State private var showAnswer = false
 
     var body: some View {
@@ -101,7 +108,7 @@ struct APIView: View {
             }
         }
         .onAppear {
-            // Initial load for the selected category (if needed)
+            // Initial load for the selected category
             Task {
                 questions = await loadQuestions(for: selectedCategory)
             }
@@ -109,7 +116,7 @@ struct APIView: View {
         }
     }
 
-    // Function to load questions for the selected category
+    // Loads questions from selected category
     func loadQuestions(for category: String) async -> [TriviaQuestion] {
         let formattedCategory = category.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let query = "https://the-trivia-api.com/v2/questions?categories=\(formattedCategory.lowercased())"
