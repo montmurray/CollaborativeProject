@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct APIView: View {
     @State private var questions = [TriviaQuestion]()
     var selectedCategory: String

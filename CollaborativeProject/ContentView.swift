@@ -24,7 +24,6 @@ struct AppColors {
 
 struct ContentView: View {
     @State private var showingAbout = false
-    
     let categories = [
         "General Knowledge",
         "Arts and Literature",
@@ -91,9 +90,74 @@ struct ContentView: View {
                  .padding()
              }
          }
+         }
 
      }
-}
+    /*
+    
+    var body: some View {
+        NavigationView {
+            ZStack {
+                
+            LinearGradient(gradient: Gradient(colors: [Color.white, Color.black]), startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
+                
+                VStack(spacing: 40) {
+                    Text("Welcome to The Answer Is!")
+                        .font(.largeTitle)
+                        .multilineTextAlignment(.center)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .cornerRadius(15)
+                        .shadow(radius: 10)
+                    
+                    NavigationLink(destination: CategoryView()) {
+                        Text("Trivia List")
+                            .font(.title)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(12)
+                            .shadow(radius: 10)
+                            .scaleEffect(1.05)
+                            .animation(.easeOut, value: 1)
+                    }
+                    
+                    NavigationLink(destination: APIView(selectedCategory: "General Knowledge")) {
+                        Text("Settings")
+                            .font(.title)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.green]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(12)
+                            .shadow(radius: 10)
+                            .scaleEffect(1.05)
+                            .animation(.easeOut, value: 1)
+                    }
+                    
+                    // Test Navigation Button with Random Category
+                    NavigationLink(destination: APIView(selectedCategory: categories.randomElement() ?? "General Knowledge")) {
+                        Text("Test")
+                            .font(.title)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(12)
+                            .shadow(radius: 10)
+                            .scaleEffect(1.05)
+                            .animation(.easeOut, value: 1)
+                    }
+
+                }
+            }
+            .padding()
+            .navigationTitle("")
+            .edgesIgnoringSafeArea(.vertical)
+            .edgesIgnoringSafeArea(.horizontal)
+        }
+    } */
 
 #Preview {
     ContentView()
