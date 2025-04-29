@@ -16,6 +16,8 @@ struct APIView: View {
     var selectedCategory: String
     //numbering questions
     @State private var currentQuestionIndex = 0
+    @State private var correctAnswers = 0
+    @State private var incorrectAnswers = 0
     //answers
     @State private var selectedAnswer: String?
     @State private var answer = ""
@@ -37,9 +39,27 @@ struct APIView: View {
                             .multilineTextAlignment(.center)
                             .fontWeight(.bold)
                             .foregroundColor(AppColors.textPrimary)
-                            .padding()
                             .cornerRadius(15)
                             .shadow(radius: 1)
+            HStack {
+                
+                Text("Correct: \(correctAnswers)")
+                    .font(.system(size: 15))
+                    .multilineTextAlignment(.center)
+                    .fontWeight(.bold)
+                    .foregroundColor(AppColors.textPrimary)
+                    .cornerRadius(15)
+                    .shadow(radius: 1)
+                Text("Incorrect: \(incorrectAnswers)")
+                    .font(.system(size: 15))
+                    .multilineTextAlignment(.center)
+                    .fontWeight(.bold)
+                    .foregroundColor(AppColors.textPrimary)
+                    .cornerRadius(15)
+                    .shadow(radius: 1)
+                
+            }
+                        
 
                         // Show the question if available
                         if !questions.isEmpty {
@@ -84,9 +104,29 @@ struct APIView: View {
                         .shadow(radius: 20)
 
                         .padding()
+
                     if (selectedAnswer == question.correctAnswer)
                     {
                         Button("Next") {
+                            correctAnswers += 1
+                            selectedAnswer = nil
+                            showAnswer = false
+                            if currentQuestionIndex < questions.count - 1 {
+                                currentQuestionIndex += 1
+                            } else {
+                                currentQuestionIndex = 0 // Reset or handle quiz completion
+                            }
+                        }
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                    }
+                    
+                    if (selectedAnswer != question.correctAnswer)
+                    {
+                        Button("Next") {
+                            incorrectAnswers += 1
                             selectedAnswer = nil
                             showAnswer = false
                             if currentQuestionIndex < questions.count - 1 {

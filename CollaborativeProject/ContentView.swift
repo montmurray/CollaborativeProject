@@ -34,130 +34,65 @@ struct ContentView: View {
         "Geography"
     ]
     
-
-     var body: some View {
-         NavigationView {
-             ZStack {
-                 LinearGradient(gradient: Gradient(colors: [AppColors.primary, AppColors.accent]), startPoint: .top, endPoint: .bottom)
-                     .ignoresSafeArea()
-                 
-                 Image (systemName: "questionmark")
-                     .font(.system(size: 650))
-                     .foregroundStyle(Color.white.opacity (0.4))
-                 VStack(spacing: 20) {
-                     
-                     Text("The Answer Is!")
-                         //.font(.largeTitle)
-                         .font(.system(size: 70))
-                         .multilineTextAlignment(.center)
-                         .fontWeight(.bold)
-                         .foregroundColor(AppColors.textPrimary)
-                         .padding()
-                         .cornerRadius(15)
-                         .shadow(radius: 1)
-                     
-                     NavigationLink(destination: CategoryView()) {
-                         Text("Pick your Trivia!")
-                             .font(.title)
-                             .padding()
-                             .foregroundColor(AppColors.textPrimary)
-                             .background(LinearGradient(gradient: Gradient(colors: [AppColors.accent, AppColors.background]), startPoint: .top, endPoint: .bottom))
-                             .cornerRadius(12)
-                             .shadow(radius: 10)
-                             .scaleEffect(1.05)
-                             .animation(.easeOut, value: 1)
-                     }
-                     
-                     Text("About").onTapGesture {
-                         showingAbout = true
-                     }
-                     //.font(.largeTitle)
-                     .font(.system(size: 20))
-                     .multilineTextAlignment(.center)
-                     .fontWeight(.bold)
-                     .foregroundColor(AppColors.textPrimary)
-                     .padding()
-                     .cornerRadius(15)
-                     .shadow(radius: 1)
-                 }
-                 
-                 .alert(isPresented: $showingAbout) {
-                     Alert(title: Text("Hello!"),
-                           message: Text("Thank you for playing The Answer Is! \n\nHow to play: \nSimply tap 'Pick Your Trivia' and test your knowledge of over 6 topics including Arts and Literature, History, Science, Music, Society and Culture, and Geography!"),
-                           dismissButton: .default(Text("OK")))
-                 }
-                 
-                 .padding()
-             }
-         }
-         }
-
-     }
-    /*
     
     var body: some View {
         NavigationView {
             ZStack {
+                LinearGradient(gradient: Gradient(colors: [AppColors.primary, AppColors.accent]), startPoint: .top, endPoint: .bottom)
+                    .ignoresSafeArea()
                 
-            LinearGradient(gradient: Gradient(colors: [Color.white, Color.black]), startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
-                
-                VStack(spacing: 40) {
-                    Text("Welcome to The Answer Is!")
-                        .font(.largeTitle)
+                Image (systemName: "questionmark")
+                    .font(.system(size: 650))
+                    .foregroundStyle(Color.white.opacity (0.4))
+                VStack(spacing: 20) {
+                    
+                    Text("The Answer Is!")
+                    //.font(.largeTitle)
+                        .font(.system(size: 70))
                         .multilineTextAlignment(.center)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(AppColors.textPrimary)
                         .padding()
-                        .background(LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
                         .cornerRadius(15)
-                        .shadow(radius: 10)
+                        .shadow(radius: 1)
                     
                     NavigationLink(destination: CategoryView()) {
-                        Text("Trivia List")
+                        Text("Pick your Trivia!")
                             .font(.title)
                             .padding()
-                            .foregroundColor(.white)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                            .foregroundColor(AppColors.textPrimary)
+                            .background(LinearGradient(gradient: Gradient(colors: [AppColors.accent, AppColors.background]), startPoint: .top, endPoint: .bottom))
                             .cornerRadius(12)
                             .shadow(radius: 10)
                             .scaleEffect(1.05)
                             .animation(.easeOut, value: 1)
                     }
                     
-                    NavigationLink(destination: APIView(selectedCategory: "General Knowledge")) {
-                        Text("Settings")
-                            .font(.title)
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.green]), startPoint: .leading, endPoint: .trailing))
-                            .cornerRadius(12)
-                            .shadow(radius: 10)
-                            .scaleEffect(1.05)
-                            .animation(.easeOut, value: 1)
+                    Text("About").onTapGesture {
+                        showingAbout = true
                     }
-                    
-                    // Test Navigation Button with Random Category
-                    NavigationLink(destination: APIView(selectedCategory: categories.randomElement() ?? "General Knowledge")) {
-                        Text("Test")
-                            .font(.title)
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .leading, endPoint: .trailing))
-                            .cornerRadius(12)
-                            .shadow(radius: 10)
-                            .scaleEffect(1.05)
-                            .animation(.easeOut, value: 1)
-                    }
-
+                    //.font(.largeTitle)
+                    .font(.system(size: 20))
+                    .multilineTextAlignment(.center)
+                    .fontWeight(.bold)
+                    .foregroundColor(AppColors.textPrimary)
+                    .padding()
+                    .cornerRadius(15)
+                    .shadow(radius: 1)
                 }
+                
+                .alert(isPresented: $showingAbout) {
+                    Alert(title: Text("Hello!"),
+                          message: Text("Thank you for playing The Answer Is! \n\nHow to play: \nSimply tap 'Pick Your Trivia' and test your knowledge of over 6 topics including Arts and Literature, History, Science, Music, Society and Culture, and Geography!"),
+                          dismissButton: .default(Text("OK")))
+                }
+                
+                .padding()
             }
-            .padding()
-            .navigationTitle("")
-            .edgesIgnoringSafeArea(.vertical)
-            .edgesIgnoringSafeArea(.horizontal)
         }
-    } */
+    }
+    
+}
 
 #Preview {
     ContentView()
