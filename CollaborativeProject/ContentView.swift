@@ -33,8 +33,6 @@ struct ContentView: View {
         "Society and Culture",
         "Geography"
     ]
-    
-    
     var body: some View {
         NavigationView {
             ZStack {

@@ -9,7 +9,7 @@ var selectedCategory: String
 @State private var correctAnswers = 0
 @State private var incorrectAnswers = 0
 @State private var progress = 0
-@State private var finalGrade = 0.00
+@State private var finalGrade = 0
     //answer
 @State private var selectedAnswer: String?
 @State private var answer = ""
@@ -125,7 +125,7 @@ var body: some View {
                                         handleAnswer()
                                         
                                         // Automatically transition to the next question after a short delay
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                                             moveToNextQuestion()
                                         }
                                     }) {
