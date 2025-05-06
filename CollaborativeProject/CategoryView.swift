@@ -64,7 +64,7 @@ struct CategoryView: View {
                             HStack {
                                 Text(category)
                                     .font(.title2)
-                                    //.background(AppColors.primary)
+                                    
                                 Spacer()
                                 if selectedCategory == category {
                                     Image(systemName: "checkmark")
@@ -72,11 +72,10 @@ struct CategoryView: View {
                                 }
                             }
                             .padding()
-                            .background(Color.gray.opacity(0.1))
+                            .background(AppColors.primary)
                             .cornerRadius(10)
                         }
                     }
-                    .background(AppColors.primary)
                     
                     Spacer()
                 
