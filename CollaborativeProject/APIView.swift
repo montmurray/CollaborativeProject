@@ -8,6 +8,7 @@ var selectedCategory: String
 @State private var currentQuestionIndex = 0
 @State private var correctAnswers = 0
 @State private var incorrectAnswers = 0
+@State private var progress = 0
     //answer
 @State private var selectedAnswer: String?
 @State private var answer = ""
@@ -17,6 +18,7 @@ var selectedCategory: String
     
 var body: some View {
         ZStack {
+            
             LinearGradient(gradient: Gradient(colors: [AppColors.primary, AppColors.accent]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
                 
@@ -25,6 +27,15 @@ var body: some View {
                 .foregroundStyle(Color.white.opacity(0.4))
                 
             VStack {
+                var progress = correctAnswers + incorrectAnswers
+                Text("\(progress) / 20")
+                    .font(.system(size: 40))
+                    .multilineTextAlignment(.center)
+                    .fontWeight(.bold)
+                    .foregroundColor(AppColors.textPrimary)
+                    .cornerRadius(15)
+                    .shadow(radius: 1)
+                
                 Text("\(selectedCategory)")
                     .font(.system(size: 40))
                     .multilineTextAlignment(.center)
@@ -99,7 +110,7 @@ var body: some View {
                         if showAnswer {
                             Text(isAnswerCorrect == true ? "Correct!" : "Incorrect!")
                                 .foregroundColor(isAnswerCorrect == true ? .green : .red)
-                                .font(.system(size: 50))
+                                .font(.system(size: 70))
                                 .shadow(radius: 20)
                                 .padding()
                         }
