@@ -27,39 +27,48 @@ var body: some View {
                 .foregroundStyle(Color.white.opacity(0.4))
                 
             VStack {
-                var progress = correctAnswers + incorrectAnswers
-                Text("\(progress) / 20")
-                    .font(.system(size: 40))
-                    .multilineTextAlignment(.center)
-                    .fontWeight(.bold)
-                    .foregroundColor(AppColors.textPrimary)
-                    .cornerRadius(15)
-                    .shadow(radius: 1)
+                ZStack {
+                    Text("\(selectedCategory)")
+                        .font(.system(size: 40))
+                        .multilineTextAlignment(.center)
+                        .fontWeight(.bold)
+                        .foregroundColor(AppColors.secondaryUI)
+                        .cornerRadius(15)
+                        .shadow(radius: 7)
+                }
+                .padding()
                 
-                Text("\(selectedCategory)")
-                    .font(.system(size: 40))
-                    .multilineTextAlignment(.center)
-                    .fontWeight(.bold)
-                    .foregroundColor(AppColors.textPrimary)
-                    .cornerRadius(15)
-                    .shadow(radius: 1)
-                    
+                if (showAnswer == true)
+                {
+                    var progress = correctAnswers + incorrectAnswers
+                    Text("Question \(progress) of 20")
+                        .font(.system(size: 40))
+                        .multilineTextAlignment(.center)
+                        .fontWeight(.bold)
+                        .foregroundColor(AppColors.textPrimary)
+                        .cornerRadius(15)
+                        .shadow(radius: 1)
+                        .padding()
+                }
                 HStack {
-                    Text("Correct: \(correctAnswers)")
-                        .font(.system(size: 15))
-                        .multilineTextAlignment(.center)
-                        .fontWeight(.bold)
-                        .foregroundColor(AppColors.textPrimary)
-                        .cornerRadius(15)
-                        .shadow(radius: 1)
+                    if (showAnswer == true)
+                    {
+                        Text("Correct: \(correctAnswers)")
+                            .font(.system(size: 25))
+                            .multilineTextAlignment(.center)
+                            .fontWeight(.bold)
+                            .foregroundColor(AppColors.textPrimary)
+                            .cornerRadius(15)
+                            .shadow(radius: 1)
                         
-                    Text("Incorrect: \(incorrectAnswers)")
-                        .font(.system(size: 15))
-                        .multilineTextAlignment(.center)
-                        .fontWeight(.bold)
-                        .foregroundColor(AppColors.textPrimary)
-                        .cornerRadius(15)
-                        .shadow(radius: 1)
+                        Text("Incorrect: \(incorrectAnswers)")
+                            .font(.system(size: 25))
+                            .multilineTextAlignment(.center)
+                            .fontWeight(.bold)
+                            .foregroundColor(AppColors.textPrimary)
+                            .cornerRadius(15)
+                            .shadow(radius: 1)
+                    }
                 }
                     
                 if !questions.isEmpty {
@@ -75,7 +84,7 @@ var body: some View {
                         .foregroundColor(AppColors.textPrimary)
                         .padding()
                         .cornerRadius(15)
-                        .shadow(radius: 1)
+                        .shadow(radius: 20)
                         
                         // Shuffle answers (correct + 3 incorrect)
                         let allAnswers = (question.incorrectAnswers + [question.correctAnswer]).shuffled()
@@ -89,7 +98,7 @@ var body: some View {
                                     handleAnswer()
                                     
                                     // Automatically transition to the next question after a short delay
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                                         moveToNextQuestion()
                                     }
                                 }) {
