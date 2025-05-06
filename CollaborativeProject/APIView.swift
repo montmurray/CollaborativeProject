@@ -9,6 +9,7 @@ var selectedCategory: String
 @State private var correctAnswers = 0
 @State private var incorrectAnswers = 0
 @State private var progress = 0
+@State private var finalGrade = 0.00
     //answer
 @State private var selectedAnswer: String?
 @State private var answer = ""
@@ -28,19 +29,21 @@ var body: some View {
                 
             VStack {
                 ZStack {
-                    Text("\(selectedCategory)")
-                        .font(.system(size: 40))
-                        .multilineTextAlignment(.center)
-                        .fontWeight(.bold)
-                        .foregroundColor(AppColors.secondaryUI)
-                        .cornerRadius(15)
-                        .shadow(radius: 7)
+                    if (showAnswer == false)
+                    {
+                        Text("\(selectedCategory)")
+                            .font(.system(size: 40))
+                            .multilineTextAlignment(.center)
+                            .fontWeight(.bold)
+                            .foregroundColor(AppColors.secondaryUI)
+                            .cornerRadius(15)
+                            .shadow(radius: 20)
+                    }
                 }
                 .padding()
                 
                 if (showAnswer == true)
                 {
-                    var progress = correctAnswers + incorrectAnswers
                     Text("Question \(progress) of 20")
                         .font(.system(size: 40))
                         .multilineTextAlignment(.center)
@@ -76,45 +79,71 @@ var body: some View {
                         
                     if (showAnswer == false)
                     {
-                        // Display the current question
-                    Text(question.question.text)
-                        .font(.system(size: 20))
-                        .multilineTextAlignment(.center)
-                        .fontWeight(.bold)
-                        .foregroundColor(AppColors.textPrimary)
-                        .padding()
-                        .cornerRadius(15)
-                        .shadow(radius: 20)
-                        
-                        // Shuffle answers (correct + 3 incorrect)
-                        let allAnswers = (question.incorrectAnswers + [question.correctAnswer]).shuffled()
-                        
-                        
+                        if (progress == 21)
+                        {
+                            Text("\(convertToPercentage(score: correctAnswers))%")
+                                .font(.system(size: 40))
+                                .multilineTextAlignment(.center)
+                                .fontWeight(.bold)
+                                .foregroundColor(AppColors.textPrimary)
+                                .cornerRadius(15)
+                                .shadow(radius: 1)
+                                .padding()
+                            NavigationLink(destination: ContentView()) {
+                                Text("Go Back!")
+                                    .font(.title)
+                                    .padding()
+                                    .foregroundColor(AppColors.textPrimary)
+                                    .background(LinearGradient(gradient: Gradient(colors: [AppColors.accent, AppColors.background]), startPoint: .top, endPoint: .bottom))
+                                    .cornerRadius(12)
+                                    .shadow(radius: 10)
+                                    .scaleEffect(1.05)
+                                    .animation(.easeOut, value: 1)
+                            }
+                        }
+                        else {
+                            
+                            // Display the current question
+                            Text(question.question.text)
+                                .font(.system(size: 20))
+                                .multilineTextAlignment(.center)
+                                .fontWeight(.bold)
+                                .foregroundColor(AppColors.textPrimary)
+                                .padding()
+                                .cornerRadius(15)
+                                .shadow(radius: 20)
+                            
+                            // Shuffle answers (correct + 3 incorrect)
+                            let allAnswers = (question.incorrectAnswers + [question.correctAnswer]).shuffled()
+                            
+                            
                             ForEach(allAnswers, id: \.self) { answer in
-                                Button(action: {
-                                    selectedAnswer = answer
-                                    showAnswer = true
-                                    isAnswerCorrect = answer == question.correctAnswer
-                                    handleAnswer()
-                                    
-                                    // Automatically transition to the next question after a short delay
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                                        moveToNextQuestion()
+                                    Button(action: {
+                                        selectedAnswer = answer
+                                        showAnswer = true
+                                        isAnswerCorrect = answer == question.correctAnswer
+                                        handleAnswer()
+                                        
+                                        // Automatically transition to the next question after a short delay
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                            moveToNextQuestion()
+                                        }
+                                    }) {
+                                        Text(answer)
+                                            .font(.system(size: 20))
+                                            .padding()
+                                            .foregroundColor(AppColors.textPrimary)
+                                            .background(LinearGradient(gradient: Gradient(colors: [AppColors.accent, AppColors.background]), startPoint: .top, endPoint: .bottom))
+                                            .cornerRadius(12)
+                                            .shadow(radius: 10)
+                                            .scaleEffect(1.05)
+                                            .animation(.easeOut, value: 1)
+                                            .padding()
                                     }
-                                }) {
-                                    Text(answer)
-                                        .font(.system(size: 20))
-                                        .padding()
-                                        .foregroundColor(AppColors.textPrimary)
-                                        .background(LinearGradient(gradient: Gradient(colors: [AppColors.accent, AppColors.background]), startPoint: .top, endPoint: .bottom))
-                                        .cornerRadius(12)
-                                        .shadow(radius: 10)
-                                        .scaleEffect(1.05)
-                                        .animation(.easeOut, value: 1)
-                                        .padding()
                                 }
                             }
                         }
+                        
                         // Show answer feedback
                         if showAnswer {
                             Text(isAnswerCorrect == true ? "Correct!" : "Incorrect!")
@@ -143,10 +172,18 @@ var body: some View {
             if let isCorrect = isAnswerCorrect {
                 if isCorrect {
                     correctAnswers += 1
+                    progress += 1
+                    
                 } else {
                     incorrectAnswers += 1
+                    progress += 1
                 }
             }
+        }
+    
+        func convertToPercentage(score: Int) -> Double {
+            let percentage = (Double(score) / 20.0) * 100.0 // Divide by total and multiply to make it whole number
+            return round(percentage * 10) / 10  // Round to 1 decimal place
         }
         
         // Move to the next question
