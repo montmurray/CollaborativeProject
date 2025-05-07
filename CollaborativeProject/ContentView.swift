@@ -54,7 +54,7 @@ struct ContentView: View {
                         .cornerRadius(15)
                         .shadow(radius: 1)
                     
-                    NavigationLink(destination: CategoryView()) {
+                    NavigationLink(destination: CategoryView().navigationBarBackButtonHidden(true)) {
                         Text("Pick your Trivia!")
                             .font(.title)
                             .padding()
@@ -64,6 +64,7 @@ struct ContentView: View {
                             .shadow(radius: 10)
                             .scaleEffect(1.05)
                             .animation(.easeOut, value: 1)
+                            
                     }
                     
                     Text("About").onTapGesture {

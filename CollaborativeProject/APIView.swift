@@ -25,10 +25,11 @@ var body: some View {
                 
             Image (systemName: "questionmark")
                 .font(.system(size: 550))
-                .foregroundStyle(Color.white.opacity(0.4))
+                .foregroundStyle(Color.white.opacity(0.1))
                 
-            VStack {
-                ZStack {
+        VStack {
+                ZStack
+                {
                     if (showAnswer == false)
                     {
                         Text("\(selectedCategory)")
@@ -38,7 +39,7 @@ var body: some View {
                             .foregroundColor(AppColors.secondaryUI)
                             .cornerRadius(15)
                             .shadow(radius: 20)
-                    }
+                        }
                 }
                 .padding()
                 
@@ -89,7 +90,7 @@ var body: some View {
                                 .cornerRadius(15)
                                 .shadow(radius: 1)
                                 .padding()
-                            NavigationLink(destination: ContentView()) {
+                            NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true)) {
                                 Text("Go Back!")
                                     .font(.title)
                                     .padding()

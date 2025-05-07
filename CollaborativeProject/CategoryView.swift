@@ -39,9 +39,9 @@ struct CategoryView: View {
                     .ignoresSafeArea()
                 
                 
-                Image (systemName: "questionmark")
-                    .font(.system(size: 550))
-                    .foregroundStyle(Color.white.opacity (0.4))
+                //Image (systemName: "questionmark")
+                //    .font(.system(size: 500))
+                //    .foregroundStyle(Color.white.opacity (0.4))
                 
                 VStack(spacing: 20) {
                     
@@ -76,10 +76,11 @@ struct CategoryView: View {
                             .cornerRadius(10)
                         }
                     }
+                    .cornerRadius(15)
                     
                     Spacer()
                 
-                        NavigationLink(destination: APIView(selectedCategory: selectedCategory)) {
+                    NavigationLink(destination: APIView(selectedCategory: selectedCategory)) {
                             Text("Start Trivia")
                                 .font(.title)
                                 .padding()
