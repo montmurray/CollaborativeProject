@@ -50,10 +50,10 @@ struct CategoryView: View {
                         .font(.system(size: 30))
                         .multilineTextAlignment(.center)
                         .fontWeight(.bold)
-                        .foregroundColor(AppColors.textPrimary)
+                        .foregroundColor(AppColors.secondaryUI)
                         .padding()
                         .cornerRadius(15)
-                        .shadow(radius: 1)
+                        .shadow(radius: 15)
                     
 
                     List(categories, id: \.self) { category in
