@@ -181,7 +181,7 @@ struct APIView: View {
                                     .shadow(radius: 1)
                                     .padding()
                             }
-                            if(correctAnswers >= 19 && correctAnswers <= 20)
+                            if(correctAnswers > 19 && correctAnswers <= 20)
                             {
                                 Text("A+")
                                     .font(.system(size: 60))
