@@ -86,7 +86,8 @@ struct APIView: View {
                     if (showAnswer == false) {
                         if (progress > 20) {
                             // show final grade and feedback based on the number of correct answers
-                            if(correctAnswers > 0 && correctAnswers < 11) {
+                            if(correctAnswers > 0 && correctAnswers < 11)
+                            {
                                 Text("F")
                                     .font(.system(size: 60))
                                     .multilineTextAlignment(.center)
@@ -104,7 +105,101 @@ struct APIView: View {
                                     .shadow(radius: 1)
                                     .padding()
                             }
-                            // grade categories: D, C, B, A, A+
+                            if(correctAnswers >= 12 && correctAnswers <= 13)
+                            {
+                                Text("D")
+                                    .font(.system(size: 60))
+                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.secondaryUI)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 1)
+                                    .padding()
+                                Text("You can do better!💪")
+                                    .font(.system(size: 30))
+                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.textPrimary)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 1)
+                                    .padding()
+                            }
+                            if(correctAnswers >= 14 && correctAnswers <= 15)
+                            {
+                                Text("C")
+                                    .font(.system(size: 60))
+                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.secondaryUI)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 1)
+                                    .padding()
+                                Text("Good Job!👍")
+                                    .font(.system(size: 30))
+                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.textPrimary)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 1)
+                                    .padding()
+                            }
+                            if(correctAnswers >= 16 && correctAnswers <= 17)
+                            {
+                                Text("B")
+                                    .font(.system(size: 60))
+                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.secondaryUI)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 1)
+                                    .padding()
+                                Text("Great Job!🎉")
+                                    .font(.system(size: 30))
+                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.textPrimary)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 1)
+                                    .padding()
+                            }
+                            if(correctAnswers >= 18 && correctAnswers <= 19)
+                            {
+                                Text("A")
+                                    .font(.system(size: 60))
+                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.secondaryUI)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 1)
+                                    .padding()
+                                Text("Amazing Job!🥳")
+                                    .font(.system(size: 30))
+                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.textPrimary)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 1)
+                                    .padding()
+                            }
+                            if(correctAnswers >= 19 && correctAnswers <= 20)
+                            {
+                                Text("A+")
+                                    .font(.system(size: 60))
+                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.secondaryUI)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 1)
+                                    .padding()
+                                Text("Amazing Job! You are a \(selectedCategory) wizard!🧙‍♂️")
+                                    .font(.system(size: 30))
+                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(AppColors.textPrimary)
+                                    .cornerRadius(15)
+                                    .shadow(radius: 1)
+                                    .padding()
+                            }
                             // display corresponding feedback based on the score
                             // final grade categories for the user
                             // code to display grade is repeated for different ranges
