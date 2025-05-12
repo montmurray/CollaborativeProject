@@ -21,13 +21,13 @@ struct CategoryView: View {
     
     // list of available trivia categories
     let categories = [
-        "General Knowledge🤔",
-        "Arts and Literature🖼️",
-        "History⏳",
-        "Science🧪",
-        "Music🎵",
-        "Society and Culture🇺🇸",
-        "Geography🌎"
+        "General Knowledge",
+        "Arts and Literature",
+        "History",
+        "Science",
+        "Music",
+        "Society and Culture",
+        "Geography"
     ]
     
     var body: some View {
